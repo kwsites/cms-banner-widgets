@@ -1,0 +1,50 @@
+
+// heights used for the various banner types
+
+@banner-widget-height:      530px;
+@banner-widget-height-m:    370px;
+@banner-widget-background:  #EAEAEA;
+@banner-font-size:          2rem;
+
+.banner-widget {
+
+   .grid();
+
+   &.promo-banner {
+
+      height: @banner-widget-height;
+      background: @banner-widget-background;
+
+   }
+
+   &.page-banner {
+      height: @banner-widget-height-m;
+
+      header {
+
+         p:nth-child(n+3) {
+            margin-top: @padding-size-l;
+         }
+
+      }
+   }
+
+   article {
+      background-size: contain !important;
+      background-repeat: no-repeat;
+   }
+
+   header {
+      .flexbox();
+      .flex-direction(column);
+      .align-items(center);
+      .justify-content(center);
+
+      font-size: @banner-font-size;
+      font-family: @accent-font-face;
+      text-transform: uppercase;
+      background: @banner-widget-background;
+
+   }
+
+}

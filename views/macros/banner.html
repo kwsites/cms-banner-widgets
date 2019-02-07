@@ -1,0 +1,52 @@
+{%- macro bannerWidgetHeader (widget, name = 'text') -%}
+   <header class="order-2 regular-text">
+      {{ apos.singleton(widget, 'text') }}
+   </header>
+{%- endmacro -%}
+
+{%- macro bannerContextHeader (context) -%}
+   {%- set headerContext  = data.piece or data.page -%}
+   {%- set headerText  = headerContext.title -%}
+
+   <header class="order-2 regular-text">
+      <p>~</p>
+      {%- if headerText -%}
+      <p>{{ headerText }}</p>
+      <p>~</p>
+      {%- endif -%}
+   </header>
+{%- endmacro -%}
+
+{%- macro pageBanner (context, images) -%}
+   {{ banner('page', context, images or context) }}
+{%- endmacro -%}
+
+{%- macro banner (layout, data, images) -%}
+<section class="block grid-layout col-count-3 banner-widget {{ layout }}-banner">
+   {%- if layout == 'promo' -%}
+      {{ bannerWidgetHeader(data.widget, 'text') }}
+   {%- elif layout == 'page' -%}
+      {{ bannerContextHeader(data.piece or data.page) }}
+   {%- endif -%}
+
+   {%- set imageGroup = images or data.widget or data.piece or data.page -%}
+   {%- for image in apos.images.all(imageGroup) | max(2) -%}
+   {%- set imageSrc = apos.attachments.url(image) -%}
+   {%- set imageOrder = loop.index if loop.first else loop.index + 1 %}
+
+   <article
+      class="order-{{ imageOrder }}"
+      style="background-image: url('{{ imageSrc }}') {{ image | focalPoint }}; background-size: cover"
+   >
+      <img
+         alt="{{ image.title }}"
+         src="{{ imageSrc }}"
+         style="display: none"
+
+      >
+   </article>
+
+   {% endfor %}
+</section>
+
+{%- endmacro -%}
