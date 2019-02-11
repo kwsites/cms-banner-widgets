@@ -10,23 +10,20 @@
 
    .grid();
 
-   &.promo-banner {
+   // used as large promotion blocks, eg: home page
+   &.banner-type-promo {
 
       height: @banner-widget-height;
       background: @banner-widget-background;
 
    }
 
-   &.page-banner {
-      height: @banner-widget-height-m;
+   // used on any regular or pieces-index page to show the title of the page
+   // or used on a pieces-show page to the title of the piece
+   &.banner-type-page {
 
-      header {
+      height: @banner-widget-height;
 
-         p:nth-child(n+3) {
-            margin-top: @padding-size-l;
-         }
-
-      }
    }
 
    article {

@@ -22,7 +22,7 @@
 {%- endmacro -%}
 
 {%- macro banner (layout, data, images) -%}
-<section class="block grid-layout col-count-3 banner-widget {{ layout }}-banner">
+<section class="block grid-layout col-count-3 banner-widget banner-type-{{ layout }}">
    {%- if layout == 'promo' -%}
       {{ bannerWidgetHeader(data.widget, 'text') }}
    {%- elif layout == 'page' -%}
