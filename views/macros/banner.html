@@ -23,10 +23,10 @@
 
 {%- macro banner (layout, data, images) -%}
 <section class="block grid-layout no-grid-gap col-count-3 banner-widget banner-type-{{ layout }}">
-   {%- if layout == 'promo' -%}
-      {{ bannerWidgetHeader(data.widget, 'text') }}
-   {%- elif layout == 'page' -%}
+   {%- if layout == 'page' -%}
       {{ bannerContextHeader(data.piece or data.page) }}
+   {%- elif layout -%}
+      {{ bannerWidgetHeader(data.widget, 'text') }}
    {%- endif -%}
 
    {%- set imageGroup = images or data.widget or data.piece or data.page -%}

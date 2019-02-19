@@ -16,6 +16,12 @@ module.exports = {
             },
 
             {
+               value: 'inline',
+               label: 'Inline - as used in features',
+               showFields: ['text'],
+            },
+
+            {
                value: 'page',
                label: 'Page / Piece Header (two images + derived text)'
             },
