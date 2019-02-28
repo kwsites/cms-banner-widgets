@@ -51,4 +51,36 @@
 
    }
 
+   @media @not-mobile {
+      .grid-template-columns(1fr 1fr 1fr);
+
+      &.banner-type-inline {
+         header {
+            .grid-column(2);
+         }
+      }
+
+      &.banner-type-inline {
+         header {
+            .grid-column(1);
+         }
+      }
+   }
+
+   @media @mobile {
+      .grid-template-columns(1fr 1fr);
+
+
+      &.banner-type-inline {
+         header {
+            .grid-column-cover(1, 3);
+            .grid-row(1);
+         }
+
+         article {
+            .grid-row(2);
+         }
+      }
+   }
+
 }

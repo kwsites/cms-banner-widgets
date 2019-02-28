@@ -1,5 +1,5 @@
 {%- macro bannerWidgetHeader (widget, name = 'text') -%}
-   <header class="order-2 regular-text">
+   <header class="regular-text">
       {{ apos.singleton(widget, 'text') }}
    </header>
 {%- endmacro -%}
@@ -8,7 +8,7 @@
    {%- set headerContext  = data.piece or data.page -%}
    {%- set headerText  = headerContext.title -%}
 
-   <header class="order-2 regular-text">
+   <header class="regular-text">
       <p>~</p>
       {%- if headerText -%}
       <p>{{ headerText }}</p>
@@ -22,7 +22,7 @@
 {%- endmacro -%}
 
 {%- macro banner (layout, data, images) -%}
-<section class="block grid-layout no-grid-gap col-count-3 banner-widget banner-type-{{ layout }}">
+<section class="block grid-layout no-grid-gap banner-widget banner-type-{{ layout }}">
    {%- if layout == 'page' -%}
       {{ bannerContextHeader(data.piece or data.page) }}
    {%- elif layout -%}
@@ -32,10 +32,8 @@
    {%- set imageGroup = images or data.widget or data.piece or data.page -%}
    {%- for image in apos.images.all(imageGroup) | max(2) -%}
    {%- set imageSrc = apos.attachments.url(image) -%}
-   {%- set imageOrder = loop.index if loop.first else loop.index + 1 %}
 
    <article
-      class="order-{{ imageOrder }}"
       style="background-image: url('{{ imageSrc }}') {{ image | focalPoint }}; background-size: cover"
    >
       <img

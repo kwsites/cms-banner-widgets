@@ -42,7 +42,8 @@ module.exports = {
          options: {
             minSize: [ 200, 200 ],
             aspectRatio: [370, 530],
-            focalPoint: true
+            focalPoint: true,
+            limit: 2,
          }
       },
    ],
