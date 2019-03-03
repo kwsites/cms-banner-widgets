@@ -5,32 +5,23 @@
 @banner-widget-height-m:    370px;
 @banner-widget-background:  #EAEAEA;
 @banner-font-size:          2rem;
+@banner-font-size-mobile:   @banner-font-size * 0.75;
 
 .banner-widget {
 
    .grid();
+   .grid-template-columns(1fr 1fr 1fr);
 
-   // used as large promotion blocks, eg: home page
-   &.banner-type-promo {
-
-      height: @banner-widget-height;
-      background: @banner-widget-background;
-
+   &.banner-type-promo, &.banner-type-page {
+      header {
+         .grid-column(2);
+      }
    }
 
-   // used on any regular or pieces-index page to show the title of the page
-   // or used on a pieces-show page to the title of the piece
-   &.banner-type-page {
-
-      height: @banner-widget-height;
-
-   }
-
-   // adds classes for use as an "inline" widget as used by the feature component for talent/blog posts etc
    &.banner-type-inline {
-
-      height: @banner-widget-height-m;
-
+      header {
+         .grid-column(1);
+      }
    }
 
    article {
@@ -48,39 +39,51 @@
       font-family: @accent-font-face;
       text-transform: uppercase;
       background: @banner-widget-background;
-
    }
 
    @media @not-mobile {
-      .grid-template-columns(1fr 1fr 1fr);
 
-      &.banner-type-inline {
-         header {
-            .grid-column(2);
-         }
+      &.banner-type-promo {
+         height: @banner-widget-height;
+         background: @banner-widget-background;
+      }
+
+      &.banner-type-page {
+         height: @banner-widget-height;
       }
 
       &.banner-type-inline {
-         header {
-            .grid-column(1);
-         }
+         height: @banner-widget-height-m;
       }
+
    }
 
    @media @mobile {
-      .grid-template-columns(1fr 1fr);
 
+      &.banner-type-promo {
+         min-height: @banner-widget-height / 2;
 
-      &.banner-type-inline {
          header {
-            .grid-column-cover(1, 3);
-            .grid-row(1);
-         }
-
-         article {
-            .grid-row(2);
+            font-size: @banner-font-size-mobile;
          }
       }
+
+      &.banner-type-page {
+         min-height: @banner-widget-height / 2;
+
+         header {
+            font-size: @banner-font-size-mobile;
+         }
+      }
+
+      &.banner-type-inline {
+         min-height: @banner-widget-height-m / 2;
+
+         header {
+            font-size: 1rem;
+         }
+      }
+
    }
 
 }
